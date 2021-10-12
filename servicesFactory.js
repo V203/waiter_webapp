@@ -8,14 +8,7 @@ const pool = new Pool({
 module.exports = function ServicesFactory() {
 
     var name = "";
-    let everyDay = async () => {
-        try {
-            await pool.query(`SELECT * FROM days`);
-        } catch (error) {
-            console.log(`everyDay function error ==> : ${error}`);
-        }
-
-    };
+   
 
 
     let getUserName = async () => {

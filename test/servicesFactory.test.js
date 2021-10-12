@@ -32,7 +32,7 @@ describe('Waiter App functions Test\'s', function () {
 
 		}
 		
-
+//
 	})
 
 	it('Should store a name in any day chosen by the user',async ()=>{
