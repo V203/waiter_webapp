@@ -81,7 +81,7 @@ module.exports = function ServicesFactory() {
     }
 
     return {
-        everyDay, getUserName,
+        getUserName,
         setUserName, addWaiter,
         removeWaiter, getSpecificDay,
         greetWaiter, superObjFun
