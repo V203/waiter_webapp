@@ -1,0 +1,1 @@
+create table Days(Monday text ,Tuesday text,Wednesday text ,Thursday text, Friday text, Saturday text, Sunday text);

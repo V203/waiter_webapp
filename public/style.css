@@ -1,0 +1,153 @@
+html{
+    background-color: #382f35;
+}
+ body{
+    background-color: #58494d;
+    width: 95%;
+    height: 88%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    border-style: unset;
+    border-radius: 9px 9px 9px 9px;
+    box-shadow:1px 0px 3px 7px #3768b6cc ;
+
+}
+hr{
+    box-shadow:1px 0px 3px 4px #184185cc ;
+}
+.head-title{
+    /* padding-top: 13px; */
+    text-align: center;
+    color: #3768b6cc;
+    text-shadow: 1px 1px 2px rgba(246, 246, 246, 0.678), 0 0 25px rgb(182, 121, 126), 0 0 5px rgb(113, 113, 134);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    
+}
+
+.regLbl{
+    font-family:Haettenschweiler, 'Arial Narrow Bold', sans-serif;    
+    position: static;
+    display: inline-block;
+    margin-left: auto;   
+    margin-right: auto;
+}
+
+.inputField{
+/* text-transform: uppercase; */
+/* float: right; */
+height: fit-content;
+display: inline-block;
+}
+.center{
+    display: flex;
+    flex-flow: row;
+    width: 100%;
+    height: auto;
+ margin-left: auto;   
+ margin-right: auto;
+ color: bisque;
+ 
+ /* border-color: blueviolet; */
+
+ 
+}
+button_show{
+    margin-left: auto;   
+ margin-right: auto;
+ 
+ 
+}
+.daysDiv{
+    min-width: 12%;
+    min-height: 100px;
+    
+    border-radius:9px;
+    background-color: rgba(184, 64, 17, 0.962);
+    border-width: 5px;
+    border-style: solid;
+    border-color: black;
+    margin-left: 7px;
+    margin-right: 7px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-align: center;
+    visibility: visible;
+    
+
+
+}
+.plate-text{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    
+}
+.display{
+    min-height: 30px;
+    display: flex;
+    flex-flow: row;
+}
+
+/* .Lengths{
+    width: 300px;
+    height: 65px;
+    border-style: solid;
+    border-color: blueviolet;
+} */
+
+.error_out{
+    color: rgb(128, 1, 1);
+    text-align: center;
+    visibility: hidden;
+    background-color: rgba(242, 211, 211, 0.905);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    border-radius: 9px 9px 9px 9px;
+    box-shadow:inset;
+    /* max-height:70px ; */
+
+}
+
+.confirm_out{
+    /* height: fit-content; */
+    color: green;
+    background-color: rgb(221, 245, 184);
+    text-align: center;
+    box-shadow:none;
+    border-radius: 9px 9px 9px 9px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+button{
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.textDiv{
+    height: 12px;
+}
+
+._10pxh{
+height: 15px;
+}
+
+
+@media screen and (max-width:646px){
+    .center{
+        display: flex;
+        flex-flow: column;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .spanning{
+        display: flex;
+        flex-flow: column;  
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .daysDiv{
+        display: grid;
+        grid-auto-flow: column;
+        width: auto;
+        height: auto;
+    }
+}
