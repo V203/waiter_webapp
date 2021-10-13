@@ -77,7 +77,7 @@ app.post(`/waiter`, async (req,res)=>{
     res.render(`waiter`,
 
     {
-        mon: await servicesFactory.getSpecificDay("monday")
+        // mon: await servicesFactory.getSpecificDay("monday")
     });
 });
 
