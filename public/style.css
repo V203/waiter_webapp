@@ -65,14 +65,15 @@ button_show{
     
     border-radius:9px;
     background-color: rgba(184, 64, 17, 0.962);
-    border-width: 5px;
-    border-style: solid;
-    border-color: black;
+    border-width: 1px;
+    border-style: unset;
+    /* border-color: black; */
     margin-left: 7px;
     margin-right: 7px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     text-align: center;
     visibility: visible;
+    box-shadow:1px 0px 3px 3px #3768b6cc ;
     
 
 

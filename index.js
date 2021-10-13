@@ -65,17 +65,17 @@ const PORT = process.env.PORT || 3015;
 
 app.get(`/`,async (req, res) => {  
     let servicesFactory = ServicesFactory(pool);
-    await servicesFactory.setUserName(req.body.nameInput)    
+    
     res.render('index', {     
-        waiterName:servicesFactory.getUserName()                                        
+                                             
     });     
  
 })
 
 app.post(`/waiter`, async (req,res)=>{
     let servicesFactory = ServicesFactory(pool);
-    res.render(`waiter`,{
-        waiterName:await servicesFactory.greetWaiter(req.body.nameInput)
+    res.render(`waiter`,{mon: await servicesFactory.getSpecificDay("monday")
+        
     });
 });
 
