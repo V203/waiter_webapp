@@ -73,11 +73,11 @@ app.get(`/`,async (req, res) => {
 })
 
 app.post(`/waiter`, async (req,res)=>{
-    // let servicesFactory = ServicesFactory(pool);
+    let servicesFactory = ServicesFactory(pool);
     res.render(`waiter`,
 
     {
-        
+        mon: await servicesFactory.getSpecificDay("monday")
     });
 });
 
