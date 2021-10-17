@@ -21,10 +21,22 @@
             </div>
         </div>
     </div>
-    <div class="container"><div class="row"><div class="col-12"></div></div></div>
-    <div class="container"><div class="row"><div class="col-12"></div></div></div>
-    <div class="container"><div class="row"><div class="col-12"></div></div></div>
-    <form action="/" method="get">
+    <div class="container">
+        <div class="row">
+            <div class="col-12"></div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12"></div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12"></div>
+        </div>
+    </div>
+    <form action="/index" method="get">
         {{!-- <div class="container-fluid">
             <div class="row">
                 <div class="col-3"></div>
@@ -32,7 +44,7 @@
                     <div class="input-group input-group-sm mb-3">
                         <span class="input-group-text" id="basic-addon1">Enter Your Name</span>
                         <input class="form-control" type="text" name="inputName" id="">
-                        <span><input  class="btn btn-primary" type="submit" value="Submit"></span>
+                        <span><input class="btn btn-primary" type="submit" value="Submit"></span>
                     </div>
 
                 </div>
@@ -40,12 +52,41 @@
                 <div class="col-3"></div>
             </div>
         </div> --}}
- <div class="container"><div class="row"><div class="col-12"></div></div></div>
- <div class="container"><div class="row"><div class="col-12"></div></div></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12"></div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12"></div>
+            </div>
+        </div>
+    </form>
+
+    <form action="/index" method="get">
+        <div class="container">
+            <div class="row">
+                <div class="col-4"></div>
+                <div class="col-4">
+                    <div class="input-group input-group-sm mb-3">
+                        <input class="form-control" type="text" name="user_log" id="">
+                        <input type="submit" value="Submit" class="btn btn-primary" placeholder="enter your name">
+                    </div>
+                </div>
+                <div class="col-4"></div>
+            </div>
+        </div>
     </form>
 
 
+
+
+
+
+    </form>
     <form action="/" method="post">
+
         <div class="container">
             <div class="row">
 
@@ -53,7 +94,7 @@
                 <div class="col-2-sm"></div>
                 <div class="col-2-sm">
 
-                    <input type="submit" value="Waiter" class="btn btn-primary" name="waiter" formaction="waiter">
+                    <input type="submit" value="Waiter" class="btn btn-primary" name="waiter" formaction="/waiter">
 
 
                 </div>

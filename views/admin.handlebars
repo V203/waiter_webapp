@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <title>Waiter Availability App </title>
-    
+
 </head>
+
 <body>
     <div class="row">
         <div class="col-12">
@@ -15,47 +17,120 @@
                 <h1>Waiter Availability </h1>
                 <h2>Hello Admin</h2>
                 <hr>
-            </div>            
-        </div>    
+            </div>
+        </div>
     </div>
 
 
-<div class="container-fluid">
-    <div class="row">
-<div class="col-sm">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="center">
+                    <div class="daysDiv">
+                        <h6>Monday</h6>
+                        {{#each mon}}
+                            <li>{{this}}</li>
+                        {{/each}}
+                        
+                        {{monCtr}}
+                    </div>
+                    <div class="daysDiv">
+                        <h6>Tuesday</h6>
+                        {{#each tue}}
+                            <li>{{this}}</li>
+                        {{/each}}
+                        
+                        {{tueCtr}}
+                    </div>
+                    <div class="daysDiv">
+                        <h6>Wednesday</h6>
+                        {{#each wed}}
+                            <li>{{this}}</li>
+                        {{/each}}
+                        
+                        
+                        {{wedCtr}}
+                    </div>
+                    <div class="daysDiv">
+                        <h6>Thursday</h6>
+                         {{#each thur}}
+                            <li>{{this}}</li>
+                        {{/each}}
+                        
+                        {{thurCtr}}
+                    </div>
+                    <div class="daysDiv">
+                        <h6>Thursday</h6>
+                         {{#each fri}}
+                            <li>{{this}}</li>
+                        {{/each}}
+                        {{friCtr}}
+                    </div>
+                    <div class="daysDiv">
+                        <h6>Saturday</h6>
+                        
+                         {{#each sat}}
+                            <li>{{this}}</li>
+                        {{/each}}
+                        
+                        {{satCtr}}
+                    </div>
+                    <div class="daysDiv">
+                        <h6>Sunday</h6>
+                         {{#each sun}}
+                            <li>{{this}}</li>
+                        {{/each}}
 
-     <table class="table table-sm table-primary">
-  <thead>
-    <tr>      
-      <th scope="col">Monday</th>
-      <th scope="col">Tuesday</th>
-      <th scope="col">Wednesday</th>
-      <th scope="col">Thursday</th>
-      <th scope="col">Friday</th>
-      <th scope="col">Saturday</th>
-      <th scope="col">Sunday</th>
-    </tr>
-  </thead>
-  <tbody>
-        <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        </tr>
+                        
+                        {{sunCtr}}
+                    </div>
+                </div>
+            </div>
 
-  </tbody>
-</table>
-
-</div>
-
+        </div>
     </div>
-</div>
-       
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm">
+
+                <table class="table table-sm table-primary">
+                    <thead>
+                        <tr>
+                            <th scope="col">Monday</th>
+                            <th scope="col">Tuesday</th>
+                            <th scope="col">Wednesday</th>
+                            <th scope="col">Thursday</th>
+                            <th scope="col">Friday</th>
+                            <th scope="col">Saturday</th>
+                            <th scope="col">Sunday</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
 </body>
+
 </html>
-    
-    

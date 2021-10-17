@@ -5,15 +5,15 @@ const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 
 const app = express();
-const { JSDOM } = require( "jsdom" );
-const { window } = new JSDOM( "" );
-const $ = require( "jquery" )( window );
+const { JSDOM } = require("jsdom");
+const { window } = new JSDOM("");
+const $ = require("jquery")(window);
 
-const Errsucc =require('./errsucc');
+const Errsucc = require('./errsucc');
 const flash = require('express-flash');
 const session = require('express-session');
-const Routes  = require('./Routes');
-const ServicesFactory =require('./servicesFactory')
+const Routes = require('./Routes');
+const ServicesFactory = require('./servicesFactory')
 
 const pg = require('pg');
 const Pool = pg.Pool;
@@ -29,7 +29,7 @@ if (process.env.DATABASE_URL && !local) {
     useSSL = true;
 }
 
-const connectionString = process.env.DATABASE_URL || 'postgresql://codex-coder:pg123@localhost:5432/waitdb';
+const connectionString = process.env.DATABASE_URL || 'postgresql://codex-coder:pg123@localhost:5432/waitdb_test';
 
 const pool = new Pool({
     connectionString,
@@ -60,32 +60,73 @@ app.use(flash());
 
 
 
-const PORT = process.env.PORT || 3015;
+const PORT = process.env.PORT || 3019;
 
 
-app.get(`/`,async (req, res) => {  
+app.get(`/`, async (req, res) => {
     let servicesFactory = ServicesFactory(pool);
+    // var sess;
+    // req.session.user_log = req.body.user_log
     
-    res.render('index', {     
-                                             
-    });     
- 
+    // console.log(sess)
+    // res.render(`index`, { waiterName:req.session.user_log })
+    // res.send(`<p>hey</p>`)
+    res.render('index', {
+
+    });
+
 })
 
-app.post(`/waiter`, async (req,res)=>{
-    let servicesFactory = ServicesFactory(pool);
-    res.render(`waiter`,
 
-    {
-        // mon: await servicesFactory.getSpecificDay("monday")
+app.post(`/waiter`, async (req, res) => {
+    
+    sess = req.session
+    sess = req.body.user_log
+    console.log(sess)
+    res.render(`waiter`, { waiterName:sess })
+    // res.send(`/waiter`)
+
+})
+
+// app.get(`/waiter`, async (req, res) => {
+//     let userName = req.params.nameInput
+//     const days = { monday, tuseday, wednesday, thursday, friday, saturday, sunday } = req.body
+//     console.log(userName);
+//     let servicesFactory = ServicesFactory(pool);
+//     console.log(req.body.days)
+//     res.render(`waiter`,
+
+//         {
+            
+//         });
+// });
+
+app.post(`/admin`, async (req, res) => {
+    res.render(`admin`, {
+        mon: await servicesFactory.getAllFromAday("monday"),
+        tues: await servicesFactory.getAllFromAday("tuesday"),
+        wed: await servicesFactory.getAllFromAday("wednesday"),
+        thurs: await servicesFactory.getAllFromAday("thursday"),
+        fri: await servicesFactory.getAllFromAday("friday"),
+        sat: await servicesFactory.getAllFromAday("saturday"),
+        sun: await servicesFactory.getAllFromAday("sunday"),
+
     });
 });
 
-app.post(`/admin`,async (req,res)=>{
-    res.render(`admin`,{
-    });
-});
+// app.get('/hello', function(req, res){
+//     res.send("Hello World!");
+//  });
+
+//  app.post('/hello', function(req, res){
+//     res.send("You just called the post method at '/hello'!\n");
+//  });
+
+//  app.get('/:id', function(req, res){
+//     res.send('The id you specified is ' + req.params.id);
+//  });
 
 
-app.listen(PORT, ()=>{ console.log(`Listening at PORT: ${PORT}`);
+app.listen(PORT, () => {
+    console.log(`Listening at PORT: ${PORT}`);
 });
