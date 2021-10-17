@@ -1,3 +1,16 @@
-language: node_js
-node_js:
-  - 12
+{
+  "language": "node_js",
+  "env": [
+    "DATABASE_URL=postgresql://postgres@localhost:5432/waitdb_test"
+  ],
+  "node_js": [
+    "12"
+  ],
+  "before_script": [
+    "psql -c 'create database  waitdb_test;' -U postgres",
+    "psql -U postgres -d waitdb_test -a -f waitdb_test.sql"
+  ],
+  "services": [
+    "postgresql"
+  ]
+}
