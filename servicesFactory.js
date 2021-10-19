@@ -3,9 +3,12 @@
 const { Pool } = require("pg");
 
 // eslint-disable-next-line no-undef
-const connectionString = process.env.DATABASE_URL || 'postgresql://codex-coder:pg123@localhost:5432/waitdb_test';
+const connectionString = process.env.DATABASE_URL || 'postgresql://codex-coder:pg123@localhost:5432/waitdb';
 const pool = new Pool({
-    connectionString
+    connectionString,
+    ssl: {
+        rejectUnauthorized: false
+    }
 });
 
 
@@ -48,12 +51,12 @@ module.exports = function ServicesFactory() {
     }
     async function addDays_vI(paramName, paramArr) {
         try {
-            
+            if(paramName !== undefined && paramArr !== undefined){
             for(let i of paramArr){
                 
                 await pool.query(`insert into waiters(name, shift) values('${paramName}','${i}')`)
             }
-            
+            }
 
         } catch (error) {
             console.log(`addDays function error ==> ${error}`);

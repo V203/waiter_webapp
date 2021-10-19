@@ -1,29 +1,29 @@
-// exports.Routes = Routes;
-// const { Pool } = require("pg");
-// const ServicesFactory = require("./servicesFactory");
+// // exports.Routes = Routes;
+// // const { Pool } = require("pg");
+// // const ServicesFactory = require("./servicesFactory");
 
-module.exports = function Routes(ServicesFactory){
+// module.exports = function Routes(ServicesFactory){
 
-	const home = async (req, res) => {  
-        let servicesFactory = ServicesFactory(pool);    
-		res.render('index', {                                             
-		});       
-	};
+// 	const home = async (req, res) => {  
+//         let servicesFactory = ServicesFactory(pool);    
+// 		res.render('index', {                                             
+// 		});       
+// 	};
 
-    const admin = async (req,res)=>{
-        res.render(`admin`,{
-        });
-    };
+//     const admin = async (req,res)=>{
+//         res.render(`admin`,{
+//         });
+//     };
 
-    const waiter = async (req,res)=>{
-        res.render(`waiter`,{
-        });
-    };
+//     const waiter = async (req,res)=>{
+//         res.render(`waiter`,{
+//         });
+//     };
     
 
-	return {
-		home,admin,
-        waiter
-	};
+// 	return {
+// 		home,admin,
+//         waiter
+// 	};
 
-}
+// }

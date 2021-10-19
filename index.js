@@ -26,7 +26,7 @@ var useSSL = false;
 let local = process.env.LOCAL || false;
 if (process.env.DATABASE_URL && !local) {
     // eslint-disable-next-line no-unused-vars
-    useSSL = true;
+    useSSL ;
 }
 
 const connectionString = process.env.DATABASE_URL || 'postgresql://codex-coder:pg123@localhost:5432/waitdb';
@@ -34,18 +34,18 @@ const connectionString = process.env.DATABASE_URL || 'postgresql://codex-coder:p
 const pool = new Pool({
     connectionString,
     ssl: {
-        rejectUnauthorized: true
+        rejectUnauthorized: false
     }
 });
 
 var servicesFactory = ServicesFactory(pool)
-const routes = Routes(servicesFactory)
+// const routes = Routes(servicesFactory)
 // app.use(session({
 //     secret: '<add a secret string here>',
 //     resave: false,
 //     saveUninitialized: true
 // }));
-
+const PORT = process.env.PORT || 3012;
 
 
 app.set('view engine', 'handlebars');
@@ -69,7 +69,7 @@ app.get('admin', async (req, res) => {
 })
 
 
-const PORT = process.env.PORT || 3019;
+
 
 
 app.get(`/`,async  (req, res) => {
