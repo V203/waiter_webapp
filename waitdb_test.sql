@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS waiters;
+-- DROP TABLE IF EXISTS waiters;
 -- DROP TABLE IF EXISTS admin_;
 -- DROP TABLE IF EXISTS days;
 
