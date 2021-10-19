@@ -128,9 +128,7 @@ app.post("/waiters", async (req,res) => {
         
 
 // })
-app.get("/admin",async (req,res)=>{
-    res.render("admin")
-})
+
 
 
 
@@ -156,7 +154,7 @@ app.post("/admin", async (req, res) => {
 
 
 
-app.get(`/waiters/`, async (req, res) => {
+app.get(`/waiters`, async (req, res) => {
     res.render("waiters")
 });
 
@@ -228,10 +226,12 @@ app.get(`/waiters/`, async (req, res) => {
 //     });
 
 
-    app.get('/clear', async (req, res) => {
+    app.post('/clear', async (req, res) => {
         let serve = ServicesFactory(pool)
         await serve.deleteAll()
-        res.redirect('/admin')
+        res.render('admin')
+
+        // res.redirect("/admin")
 
     })
 
