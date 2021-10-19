@@ -40,11 +40,11 @@ const pool = new Pool({
 
 var servicesFactory = ServicesFactory(pool)
 const routes = Routes(servicesFactory)
-app.use(session({
-    secret: '<add a secret string here>',
-    resave: false,
-    saveUninitialized: true
-}));
+// app.use(session({
+//     secret: '<add a secret string here>',
+//     resave: false,
+//     saveUninitialized: true
+// }));
 
 
 
@@ -55,76 +55,198 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static('public'));
 app.use(flash());
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true }
+}))
 
 
 
+app.get('admin', async (req, res) => {
+    res.redirect('/admin');
+})
 
 
 const PORT = process.env.PORT || 3019;
 
 
-app.get(`/`, async (req, res) => {
-    let servicesFactory = ServicesFactory(pool);
-    // var sess;
-    // req.session.user_log = req.body.user_log
-    
-    // console.log(sess)
-    // res.render(`index`, { waiterName:req.session.user_log })
-    // res.send(`<p>hey</p>`)
-    res.render('index', {
+app.get(`/`,async  (req, res) => {
 
-    });
+    res.render('index');
+
+})
+
+// app.post("/:id",async)
+
+app.get('/waiterLog', async (req,res)=>{
+ 
+    res.render('waiterLog')
+})
+
+app.post("/waiterLog", async (req, res) => {
+    let user = req.body.waiterName
+    console.log(user);
+    res.render('waiterLog', {})
 
 })
 
 
-app.post(`/waiter`, async (req, res) => {
-    
-    sess = req.session
-    sess = req.body.user_log
-    console.log(sess)
-    res.render(`waiter`, { waiterName:sess })
-    // res.send(`/waiter`)
+app.get("/adminLog", async (req, res) => {
+    res.render('adminLog', {})
+})
+
+
+
+// app.post("/waiters", async (req, res) => {
+
+//     // console.log(username);
+//     res.render('waiters')
+// })
+
+app.post("/waiters", async (req,res) => {
+    let serve = ServicesFactory(pool)
+    let name = req.body.username
+    let theDays = req.body.days
+
+    console.log(name +" "+  theDays)
+
+        serve.addDays_vI(name, theDays)
+    res.render("waiters")
 
 })
 
-// app.get(`/waiter`, async (req, res) => {
-//     let userName = req.params.nameInput
-//     const days = { monday, tuseday, wednesday, thursday, friday, saturday, sunday } = req.body
-//     console.log(userName);
-//     let servicesFactory = ServicesFactory(pool);
-//     console.log(req.body.days)
-//     res.render(`waiter`,
 
-//         {
-            
-//         });
-// });
 
-app.post(`/admin`, async (req, res) => {
-    res.render(`admin`, {
+
+
+
+// app.get("/admin", async (req,res) => {
+    
+        
+        
+
+// })
+app.get("/admin",async (req,res)=>{
+    res.render("admin")
+})
+
+
+
+app.post("/admin", async (req, res) => {
+    res.render('admin',{
+
         mon: await servicesFactory.getAllFromAday("monday"),
-        tues: await servicesFactory.getAllFromAday("tuesday"),
+        tue: await servicesFactory.getAllFromAday("tuesday"),
         wed: await servicesFactory.getAllFromAday("wednesday"),
         thurs: await servicesFactory.getAllFromAday("thursday"),
         fri: await servicesFactory.getAllFromAday("friday"),
         sat: await servicesFactory.getAllFromAday("saturday"),
         sun: await servicesFactory.getAllFromAday("sunday"),
+    })
 
-    });
+})
+
+
+
+
+
+
+
+
+
+app.get(`/waiters/`, async (req, res) => {
+    res.render("waiters")
 });
 
-// app.get('/hello', function(req, res){
-//     res.send("Hello World!");
-//  });
+    // app.post(`/waiters`, async (req, res) => {
+    //     let name = req.params.username
+    //     let theDays = req.body.days
 
-//  app.post('/hello', function(req, res){
-//     res.send("You just called the post method at '/hello'!\n");
-//  });
+    //     console.log(name + " " + theDays);
 
-//  app.get('/:id', function(req, res){
-//     res.send('The id you specified is ' + req.params.id);
-//  });
+    //     let serve = ServicesFactory(pool)
+    //     serve.addDays_vI(name, theDays)
+    //     // console.log( +" "+  theDays)
+    //     res.redirect("/")
+
+    //     // res.render(`index`, { })
+
+
+    // })
+
+
+
+
+
+
+
+
+
+
+
+// app.get("/waiters", async (req, res) => {
+//     console.log(req.body.username + " " + req.body.days)
+//     res.render('waiters', {})
+//     // res.redirect('')
+
+// });
+
+// app.get("/admin",async (req, res) => {
+//     console.log(req.body.username + " " + req.body.days)
+//     res.render('admin1', {})
+//     // res.redirect('')
+
+// });
+
+// app.post('/waiters', async (req, res) => {
+//     var waiterName = req.body.waiterName;
+//     // serve.addName(waiterName);
+//     res.redirect(`/waiters/${waiterName}`)
+// });
+
+// app.post('/updateWaiter/:', async (req, res) => {
+
+// })
+
+
+
+
+
+//     app.post(`/admin`, async (req, res) => {
+//         res.render(`admin`, {
+// mon: await servicesFactory.getAllFromAday("monday"),
+// tue: await servicesFactory.getAllFromAday("tuesday"),
+// wed: await servicesFactory.getAllFromAday("wednesday"),
+// thurs: await servicesFactory.getAllFromAday("thursday"),
+// fri: await servicesFactory.getAllFromAday("friday"),
+// sat: await servicesFactory.getAllFromAday("saturday"),
+// sun: await servicesFactory.getAllFromAday("sunday"),
+
+//         });
+//     });
+
+
+    app.get('/clear', async (req, res) => {
+        let serve = ServicesFactory(pool)
+        await serve.deleteAll()
+        res.redirect('/admin')
+
+    })
+
+
+//     // app.get('/hello', function(req, res){
+//     //     res.send("Hello World!");
+//     //  });
+
+//     //  app.post('/hello', function(req, res){
+//     //     res.send("You just called the post method at '/hello'!\n");
+//     //  });
+
+//     //  app.get('/:id', function(req, res){
+//     //     res.send('The id you specified is ' + req.params.id);
+//     //  });
 
 
 app.listen(PORT, () => {

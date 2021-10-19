@@ -21,76 +21,78 @@
         </div>
     </div>
 
+    <form action="/updateWaiter" method="get">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="center">
 
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <div class="center">
-                    <div class="daysDiv">
-                        <h6>Monday</h6>
-                        {{#each mon}}
-                            <li>{{this}}</li>
-                        {{/each}}
-                        
-                        {{monCtr}}
-                    </div>
-                    <div class="daysDiv">
-                        <h6>Tuesday</h6>
-                        {{#each tue}}
-                            <li>{{this}}</li>
-                        {{/each}}
-                        
-                        {{tueCtr}}
-                    </div>
-                    <div class="daysDiv">
-                        <h6>Wednesday</h6>
-                        {{#each wed}}
-                            <li>{{this}}</li>
-                        {{/each}}
-                        
-                        
-                        {{wedCtr}}
-                    </div>
-                    <div class="daysDiv">
-                        <h6>Thursday</h6>
-                         {{#each thur}}
-                            <li>{{this}}</li>
-                        {{/each}}
-                        
-                        {{thurCtr}}
-                    </div>
-                    <div class="daysDiv">
-                        <h6>Thursday</h6>
-                         {{#each fri}}
-                            <li>{{this}}</li>
-                        {{/each}}
-                        {{friCtr}}
-                    </div>
-                    <div class="daysDiv">
-                        <h6>Saturday</h6>
-                        
-                         {{#each sat}}
-                            <li>{{this}}</li>
-                        {{/each}}
-                        
-                        {{satCtr}}
-                    </div>
-                    <div class="daysDiv">
-                        <h6>Sunday</h6>
-                         {{#each sun}}
-                            <li>{{this}}</li>
-                        {{/each}}
+                        <div class="daysDiv">
+                            <h6>Monday</h6>
+                            {{#each mon}}
+                            <li><a href="">{{this}}</a></li>
+                            {{/each}}
 
-                        
-                        {{sunCtr}}
+                            {{monCtr}}
+                        </div>
+                        <div class="daysDiv">
+                            <h6>Tuesday</h6>
+                            {{#each tue}}
+                            <li><a href="">{{this}}</a></li>
+                            {{/each}}
+
+                            {{tueCtr}}
+                        </div>
+                        <div class="daysDiv">
+                            <h6>Wednesday</h6>
+                            {{#each wed}}
+                            <li><a href="">{{this}}</a></li>
+                            {{/each}}
+
+
+                            {{wedCtr}}
+                        </div>
+                        <div class="daysDiv">
+                            <h6>Thursday</h6>
+                            {{#each thurs}}
+                            <li><a href="">{{this}}</a></li>
+                            {{/each}}
+
+                            {{thurCtr}}
+                        </div>
+                        <div class="daysDiv">
+                            <h6>Friday</h6>
+                            {{#each fri}}
+                            <li><a href="">{{this}}</a></li>
+                            {{/each}}
+                            {{friCtr}}
+                        </div>
+                        <div class="daysDiv">
+                            <h6>Saturday</h6>
+
+                            {{#each sat}}
+                            <li><a href="/updateWaiters">{{this}}</a></li>
+                            {{/each}}
+
+                            {{satCtr}}
+                        </div>
+                        <div class="daysDiv">
+                            <h6>Sunday</h6>
+                            {{#each sun}}
+                            <li><a href="">{{this}}</a></li>
+                            {{/each}}
+
+
+                            {{sunCtr}}
+                        </div>
+
                     </div>
                 </div>
+
             </div>
-
         </div>
-    </div>
 
-
+    </form>
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm">
@@ -110,13 +112,35 @@
 
                     <tbody>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            {{#each mon}}
+                            <td>{{this}}</td>
+                            {{/each}}
+
+                            {{#each tues}}
+                            <td>{{this}}</td>
+                            {{/each}}
+
+                            {{#each wed}}
+                            <td>{{this}}</td>
+                            {{/each}}
+
+                            {{#each thurs}}
+                            <td>{{this}}</td>
+                            {{/each}}
+
+                            {{#each fri}}
+                            <td>{{this}}</td>
+                            {{/each}}
+
+                            {{#each sat}}
+                            <td>{{this}}</td>
+                            {{/each}}
+
+
+                            {{#each sun}}
+                            <td>{{this}}</td>
+                            {{/each}}
+
                         </tr>
 
                     </tbody>
@@ -127,7 +151,20 @@
         </div>
     </div>
 
+    <div class="container">
+        <div class="row">
 
+            <div class="col-4"></div>
+            <div class="col-4">
+                <form action="/clear" method="get">
+                    <input type="submit" formaction="/clear" class="btn btn-primary" value="clear All days">
+                </form>
+            </div>
+            <div class="col-4"></div>
+
+
+        </div>
+    </div>
 
 
 

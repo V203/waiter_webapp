@@ -20,51 +20,7 @@
             </div>
         </div>
     </div>
-    {{!-- <div class="container">
-        <div class="row">
-            <div class="col">
-                <div class="center">
-                    <div class="daysDiv">
-                        <h6>Monday</h6>
-                        {{mon}}
-                        {{monCtr}}
-                    </div>
-                    <div class="daysDiv">
-                        <h6>Tuesday</h6>
-                        {{tue}}
-                        {{tueCtr}}
-                    </div>
-                    <div class="daysDiv">
-                        <h6>Wednesday</h6>
-                        {{wed}}
-                        {{wedCtr}}
-                    </div>
-                    <div class="daysDiv">
-                        <h6>Thursday</h6>
-                        {{thur}}
-                        {{thurCtr}}
-                    </div>
-                    <div class="daysDiv">
-                        <h6>Friday</h6>
-                        <li>{{fri}}</li>
-                        {{friCtr}}
-                    </div>
-                    <div class="daysDiv">
-                        <h6>Saturday</h6>
-                        <li>{{sat}}</li>
-                        {{satCtr}}
-                    </div>
-                    <div class="daysDiv">
-                        <h6>Sunday</h6>
-
-                        <li>{{sun}}</li>
-                        {{sunCtr}}
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div> --}}
+   
 
     <div class="row">
         <div class="col-3"></div>
@@ -73,7 +29,9 @@
         <div class="col-3"></div>
 
     </div>
-    <form action="/waiter" method="post">
+
+    <form action="/waiters" method="post">
+    {{!-- <form action="/waiter" method="get"> --}}
     <div class="container-fluid">
         <div class="row">
             <div class="col-2-sm"></div>
@@ -95,7 +53,7 @@
                 </div>
 
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="days" id="inlineCheckbox1" value="thusrday">
+                    <input class="form-check-input" type="checkbox" name="days" id="inlineCheckbox1" value="thursday">
                     <label class="form-check-label" for="inlineCheckbox1">Thursday</label>
                 </div>
 
@@ -128,16 +86,16 @@
         </div>
     </div>
 
-</form>
+{{!-- </form> --}}
 
-<form action="/waiter/:?" method="get">
+{{!-- <form action="/waiter" method="post"> --}}
     <div class="container-fluid">
             <div class="row">
                 <div class="col-3"></div>
                 <div class="col-6">
                     <div class="input-group input-group-sm mb-3">
                         <span class="input-group-text" id="basic-addon1">Enter Your Name</span>
-                        <input class="form-control" type="text" name="inputName" id="">
+                        <input class="form-control" type="text" name="username" id="">
                         <span><input  class="btn btn-primary" type="submit" value="Submit"></span>
                     </div>
 
@@ -147,17 +105,38 @@
             </div>
         </div>
         
-    <div class="container">
-        <div class="row">
-            <div class="col-4-sm"></div>
-            <div class="col-3-sm">
-                <input type="submit" value="Confirm Working Days" class="btn btn-primary">
-            </div>
-
-            <div class="col-5-sm"></div>
-        </div>
-    </div>
+    
 </form>
+
+
+    <form action="/" method="get">
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-2-sm"></div>
+                <div class="col-2-sm"></div>
+                <div class="col-2-sm">
+
+                    {{!-- <input type="submit" value="Waiter" class="btn btn-primary" name="waiter" formaction="/waiter"> --}}
+
+
+                </div>
+
+                <div class="col-2-sm">
+
+                    <input type="submit" value="Admin" class="btn btn-primary" name="admin" formaction="/admin">
+
+
+                </div>
+                <div class="col-2-sm"></div>
+                <div class="col-2-sm"></div>
+
+            </div>
+        </div>
+    </form>
+
+
 </body>
 
 </html>
