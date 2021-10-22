@@ -24,6 +24,7 @@ module.exports = function ServicesFactory() {
         }
 
     }
+
     async function getSpecificDay(paramDay) {
 
         try {
@@ -54,7 +55,7 @@ module.exports = function ServicesFactory() {
             if(paramName !== undefined && paramArr !== undefined){
             for(let i of paramArr){
                 
-                await pool.query(`insert into waiters(name, shift) values('${paramName}','${i}')`)
+                await pool.query(`insert into waiters(waiters_name, waiters_day) values('${paramName}','${i}')`)
             }
             }
 

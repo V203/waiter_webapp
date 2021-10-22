@@ -14,12 +14,13 @@
         <div class="col-12">
             <div class="head-title">
                 <h1>Waiter Availability </h1>
-                <h3>Welcome {{waiterName}}</h3>
-                <h6>logged in as, {{waiterName}}</h6>
+                <h3>Welcome {{username}}</h3>
+                <h6>logged in as, {{username}}</h6>
                 <hr>
             </div>
         </div>
     </div>
+
 
 
 
@@ -29,10 +30,12 @@
             <div class="col-6">
                 {{!-- name="waiterName" --}}
 
-                <form action="/waiters" method="post">
+                <form action="/waiterLog" method="post">
                     <div class="input-group input-group-sm mb-3">
-                        <input class="form-control" type="text">
+                        <input class="form-control" name="username" type="text">
+                        <a href="/waiters/:username">
                         <input class="btn btn-primary"  value="add waiter" type="submit">
+                        </a>
                     </div>
                 </form>
 

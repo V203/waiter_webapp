@@ -16,6 +16,7 @@ const Routes = require('./Routes');
 const ServicesFactory = require('./servicesFactory')
 
 const pg = require('pg');
+const { Session } = require('express-session');
 const Pool = pg.Pool;
 
 
@@ -26,7 +27,7 @@ var useSSL = false;
 let local = process.env.LOCAL || false;
 if (process.env.DATABASE_URL && !local) {
     // eslint-disable-next-line no-unused-vars
-    useSSL ;
+    useSSL;
 }
 
 const connectionString = process.env.DATABASE_URL || 'postgresql://codex-coder:pg123@localhost:5432/waitdb';
@@ -55,85 +56,83 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static('public'));
 app.use(flash());
+app.set('trust proxy', 1) // trust first proxy
 app.use(session({
-    secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: true }
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: true }
 }))
 
 
 
-app.get('admin', async (req, res) => {
-    res.redirect('/admin');
-})
-
-
-
-
-
-app.get(`/`,async  (req, res) => {
-
+app.get(`/`, async (req, res) => {
     res.render('index');
-
 })
 
-// app.post("/:id",async)
+app.get('/admin', async (req, res) => {
+    res.render('admin');
+})
 
-app.get('/waiterLog', async (req,res)=>{
- 
+app.post('/adminLog', (req, res) => {
+    res.render('adminLog')
+});
+
+app.get('/adminLog', (req, res) => {
+    res.render('adminLog')
+});
+
+
+app.get('/waiterLog', (req, res) => {
     res.render('waiterLog')
 })
 
-app.post("/waiterLog", async (req, res) => {
-    let user = req.body.waiterName
-    console.log(user);
-    res.render('waiterLog', {})
-
+app.post('/waiterLog', (req, res) => {
+    let username = req.body.username
+   console.log(req.body.username); 
+   res.redirect(`waiters/${username}`)
 })
 
-
-app.get("/adminLog", async (req, res) => {
-    res.render('adminLog', {})
-})
-
-
-
-// app.post("/waiters", async (req, res) => {
-
-//     // console.log(username);
-//     res.render('waiters')
+// app.get('/waiterLog/:username', (req, res) => {
+//     let username = req.params.username
+//     console.log(username);
+//     res.render(`waiters/${username}`)
 // })
 
-app.post("/waiters", async (req,res) => {
-    let serve = ServicesFactory(pool)
-    let name = req.body.username
-    let theDays = req.body.days
-
-    console.log(name +" "+  theDays)
-
-        serve.addDays_vI(name, theDays)
-    res.render("waiters")
-
-})
+// app.get('/waiterLog', (req, res) => {    
+//     let username = req.params.username
+//     console.log(username);
+//     res.render('waiterLog')   
+// })
 
 
-
-
-
-
-// app.get("/admin", async (req,res) => {
+app.post(`/waiters`,async (req, res) => {
+    let username = req.params.username
+    console.log(`waiters post ${username}`);
     
-        
-        
+    let days = req.body.days
+    await serve.addDays_vI(username,days);
+    res.render('waiters')
+})
 
-// })
+app.get('/waiters/:username', (req, res) => {
+    let serve = ServicesFactory(pool);
+    
+    var username_ =req.params.username
+    
+    
+    res.render('waiters', {username:username_})
+})
 
-
-
+app.post('/clear', async (req, res) => {
+    let serve = ServicesFactory(pool)
+    await serve.deleteAll()
+    res.render('admin')
+    // res.redirect("/admin")
+})
 
 app.post("/admin", async (req, res) => {
-    res.render('admin',{
+    res.render('admin', {
 
         mon: await servicesFactory.getAllFromAday("monday"),
         tue: await servicesFactory.getAllFromAday("tuesday"),
@@ -145,109 +144,6 @@ app.post("/admin", async (req, res) => {
     })
 
 })
-
-
-
-
-
-
-
-
-
-app.get(`/waiters`, async (req, res) => {
-    res.render("waiters")
-});
-
-    // app.post(`/waiters`, async (req, res) => {
-    //     let name = req.params.username
-    //     let theDays = req.body.days
-
-    //     console.log(name + " " + theDays);
-
-    //     let serve = ServicesFactory(pool)
-    //     serve.addDays_vI(name, theDays)
-    //     // console.log( +" "+  theDays)
-    //     res.redirect("/")
-
-    //     // res.render(`index`, { })
-
-
-    // })
-
-
-
-
-
-
-
-
-
-
-
-// app.get("/waiters", async (req, res) => {
-//     console.log(req.body.username + " " + req.body.days)
-//     res.render('waiters', {})
-//     // res.redirect('')
-
-// });
-
-// app.get("/admin",async (req, res) => {
-//     console.log(req.body.username + " " + req.body.days)
-//     res.render('admin1', {})
-//     // res.redirect('')
-
-// });
-
-// app.post('/waiters', async (req, res) => {
-//     var waiterName = req.body.waiterName;
-//     // serve.addName(waiterName);
-//     res.redirect(`/waiters/${waiterName}`)
-// });
-
-// app.post('/updateWaiter/:', async (req, res) => {
-
-// })
-
-
-
-
-
-//     app.post(`/admin`, async (req, res) => {
-//         res.render(`admin`, {
-// mon: await servicesFactory.getAllFromAday("monday"),
-// tue: await servicesFactory.getAllFromAday("tuesday"),
-// wed: await servicesFactory.getAllFromAday("wednesday"),
-// thurs: await servicesFactory.getAllFromAday("thursday"),
-// fri: await servicesFactory.getAllFromAday("friday"),
-// sat: await servicesFactory.getAllFromAday("saturday"),
-// sun: await servicesFactory.getAllFromAday("sunday"),
-
-//         });
-//     });
-
-
-    app.post('/clear', async (req, res) => {
-        let serve = ServicesFactory(pool)
-        await serve.deleteAll()
-        res.render('admin')
-
-        // res.redirect("/admin")
-
-    })
-
-
-//     // app.get('/hello', function(req, res){
-//     //     res.send("Hello World!");
-//     //  });
-
-//     //  app.post('/hello', function(req, res){
-//     //     res.send("You just called the post method at '/hello'!\n");
-//     //  });
-
-//     //  app.get('/:id', function(req, res){
-//     //     res.send('The id you specified is ' + req.params.id);
-//     //  });
-
 
 app.listen(PORT, () => {
     console.log(`Listening at PORT: ${PORT}`);
