@@ -1,7 +1,11 @@
+drop table waiters  cascade;
+drop table week  cascade;
+drop table shift cascade;
 
 CREATE TABLE waiters(
     id SERIAL NOT NULL PRIMARY KEY,
-    waiters_name text not NULL
+    waiters_name text not NULL,
+    unique(waiters_name)
 );
 
 CREATE TABLE week(

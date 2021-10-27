@@ -33,10 +33,10 @@ if (process.env.DATABASE_URL && !local) {
 const connectionString = process.env.DATABASE_URL || 'postgresql://codex-coder:pg123@localhost:5432/waitdb';
 
 const pool = new Pool({
-    connectionString,
-    ssl: {
-        rejectUnauthorized: false
-    }
+    connectionString
+    // ssl: {
+    //     rejectUnauthorized: false
+    // }
 });
 
 var servicesFactory = ServicesFactory(pool)
@@ -46,7 +46,7 @@ var servicesFactory = ServicesFactory(pool)
 //     resave: false,
 //     saveUninitialized: true
 // }));
-const PORT = process.env.PORT || 3012;
+const PORT = process.env.PORT || 3000;
 
 
 app.set('view engine', 'handlebars');
@@ -58,15 +58,16 @@ app.use(express.static('public'));
 app.use(flash());
 app.set('trust proxy', 1) // trust first proxy
 app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: true }
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true }
 }))
 
 
 
 app.get(`/`, async (req, res) => {
+    
     res.render('index');
 })
 
@@ -74,23 +75,31 @@ app.get('/admin', async (req, res) => {
     res.render('admin');
 })
 
-app.post('/adminLog', (req, res) => {
+app.post('/adminLog', async (req, res) => {
     res.render('adminLog')
 });
 
-app.get('/adminLog', (req, res) => {
+app.get('/adminLog',async (req, res) => {
     res.render('adminLog')
 });
 
 
-app.get('/waiterLog', (req, res) => {
+app.get('/waiterLog', async (req, res) => {
+    
     res.render('waiterLog')
 })
 
-app.post('/waiterLog', (req, res) => {
+app.post('/waiterLog', async (req, res) => {
     let username = req.body.username
-   console.log(req.body.username); 
-   res.redirect(`waiters/${username}`)
+    // console.log(req.body.username);
+    let sess = req.session
+    // if (sess.name) {
+        sess.name = req.body.username
+         console.log(`sess.name ==> ${sess.name}`);
+
+    // }
+    // res.redirect(`waiters/${username}`)
+    res.redirect(`waiters/${sess.name}`)
 })
 
 // app.get('/waiterLog/:username', (req, res) => {
@@ -106,23 +115,31 @@ app.post('/waiterLog', (req, res) => {
 // })
 
 
-app.post(`/waiters`,async (req, res) => {
-    let username = req.params.username
-    console.log(`waiters post ${username}`);
+app.post(`/waiters`, async (req, res) => {
+    let serve = ServicesFactory(pool);
+    let username = req.body.username;
     
+
     let days = req.body.days
-    await serve.addDays_vI(username,days);
-    res.render('waiters')
+    console.log(req.session.name);
+    console.log(`waiters ==> ${username}`)
+    await serve.addDays_vI(username, days);
+    res.render('waiters',{username});
+    // res.redirect(`/waiters`)
 })
 
-app.get('/waiters/:username', (req, res) => {
+app.get('/waiters/:username', async (req, res) => {
     let serve = ServicesFactory(pool);
+
+    var username_ = req.params.username
+    let days = req.params.days
     
-    var username_ =req.params.username
     
-    
-    res.render('waiters', {username:username_})
+    console.error("username==>"+username_);
+
+    res.render('waiters', { username: username_ })
 })
+
 
 app.post('/clear', async (req, res) => {
     let serve = ServicesFactory(pool)
